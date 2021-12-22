@@ -1,4 +1,4 @@
 FROM nginx
 
-COPY /var/test_sre/www /usr/share/nginx/html
+COPY /var/test_sre/web /usr/share/nginx/html
 EXPOSE 80
