@@ -30,7 +30,8 @@ jobs:
         with:
           host: 51.250.31.114
           username: admin
-          key: ${{ secrets.KEY }}
+          privateKey: ${{ secrets.KEY }}
+#          key: ${{ secrets.KEY }}
           port: 22
           local: web/
           remote: /var/test/
