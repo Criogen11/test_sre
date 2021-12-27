@@ -16,11 +16,20 @@ jobs:
           username: admin
           key: ${{ secrets.KEY }}
           port: 22
-#          script: |
-#            whoami
-#            sudo mkdir /var/test
-          source: web
-          target: var/test
+          script: |
+            whoami
+            sudo mkdir /var/test
+#          source: web
+#          target: var/test
 #          run: sudo git clone https://github.com/Criogen11/test_sre.git
-#          run: cd web && rsync -e "ssh -p 22 -i $HOME/.ssh/key -o StrictHostKeyChecking=no" --archive --compress --delete . admin@51.250.31.114:/var/test
+#          run: cd web && rsync -e "ssh -p 22 -i $HOME/.ssh/key -o StrictHostKeyChecking=no" --archive --compress --delete . admin@51.250.31.114:/var/tes
+      - name: copy file via ssh password
+        uses: appleboy/scp-action@master
+        with:
+          host: 51.250.31.114
+          username: admin
+          key: ${{ secrets.KEY }}
+          port: 22
+          source: "web/"
+          target: "/var/test"
 
