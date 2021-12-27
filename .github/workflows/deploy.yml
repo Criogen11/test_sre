@@ -36,5 +36,5 @@ jobs:
 #          local: var/test/
 #          remote: web/
           source: "."
-          target: "var/test/"
+          target: "/var/test"
 
