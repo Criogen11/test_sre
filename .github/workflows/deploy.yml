@@ -1,1 +1,21 @@
-!
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: multiple command
+        uses: appleboy/ssh-action@master
+        with:
+          host: 51.250.31.114
+          username: admin
+          key: ${{ secrets.KEY }}
+          port: 22
+          script: |
+            whoami
+            ls -al
