@@ -41,9 +41,8 @@ jobs:
           source: "deploy.tar"
           target: "/var/test"
 
-tar -xvf archive-name.tar
 
-    - name: unzip tar
+      - name: unzip tar
         uses: appleboy/ssh-action@master
         with:
           host: 51.250.31.114
