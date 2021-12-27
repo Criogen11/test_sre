@@ -19,5 +19,6 @@ jobs:
           script: |
             whoami
             sudo mkdir /var/test
+            sudo mkdir /var/test/.git
             cd /vat/test
           run: git clone https://github.com/Criogen11/test_sre.git
