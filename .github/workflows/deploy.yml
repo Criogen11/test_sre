@@ -16,7 +16,7 @@ jobs:
           username: admin
           key: ${{ secrets.KEY }}
           port: 22
-          script: |
-            whoami
-            sudo mkdir /var/test
-          run: cd web && admin@51.250.31.114:/var/test
+#          script: |
+#            whoami
+#            sudo mkdir /var/test
+          run: cd web && sudo admin@51.250.31.114:/var/test
