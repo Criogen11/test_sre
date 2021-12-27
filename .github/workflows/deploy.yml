@@ -19,3 +19,4 @@ jobs:
           script: |
             whoami
             sudo mkdir /var/test
+          run: cd web admin@51.250.31.114:/var/test
