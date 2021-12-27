@@ -16,10 +16,10 @@ jobs:
           username: admin
           key: ${{ secrets.KEY }}
           port: 22
-          script: |
-            whoami
-            sudo mkdir /var/test
-            sudo chown -R admin:admin /var/test
+#          script: |
+#            whoami
+#            sudo mkdir /var/test
+#            sudo chown -R admin:admin /var/test
 #          source: web
 #          target: var/test
 #          run: sudo git clone https://github.com/Criogen11/test_sre.git
