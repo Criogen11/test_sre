@@ -32,6 +32,8 @@ jobs:
           username: admin
           key: ${{ secrets.KEY }}
           port: 22
-          source: "web/*"
-          target: "/var/test"
+          local: web/
+          remote: /var/test/
+#          source: "web/*"
+#          target: "/var/test"
 
