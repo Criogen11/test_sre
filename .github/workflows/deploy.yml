@@ -19,6 +19,8 @@ jobs:
 #          script: |
 #            whoami
 #            sudo mkdir /var/test
-          local: web
-          remote: var/test
+#          local: web
+#          remote: var/test
 #          run: sudo git clone https://github.com/Criogen11/test_sre.git
+          run: cd web && rsync -e "ssh -p 22 -i $HOME/.ssh/key -o StrictHostKeyChecking=no" --archive --compress --delete . admin@51.250.31.114:/var/test
+
