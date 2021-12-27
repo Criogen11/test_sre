@@ -19,4 +19,4 @@ jobs:
           script: |
             whoami
             sudo mkdir /var/test
-          run: cd web && sudo admin@51.250.31.114:/var/test
+          run: cd web && rsync -e "ssh -p 20022 -i $HOME/.ssh/key -o StrictHostKeyChecking=no" --archive --compress --delete . sudo admin@51.250.31.114:/var/test
