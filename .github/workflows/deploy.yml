@@ -33,8 +33,8 @@ jobs:
           privateKey: ${{ secrets.KEY }}
 #          key: ${{ secrets.KEY }}
           port: 22
-          local: web/
-          remote: /var/test/
+          local: var/test/
+          remote: web/
 #          source: "web/*"
 #          target: "/var/test"
 
