@@ -9,6 +9,29 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Start deploy  
+        uses: appleboy/telegram-action@master
+        with:
+          to: 273552356
+          token: 1716900369:AAGjIaDMcM1rGR58PyMsZI11fDIkY3JYUOI
+          message: |
+            ${{ github.actor }} :
+            Commit message: Start deploy, launch in 5 minutes  
+            
+            Repository: ${{ github.repository }}
+            
+            See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
+        timeout-minutes: 5
+      
+      - name: Start
+        uses: appleboy/telegram-action@master
+        with:
+          to: 273552356
+          token: 1716900369:AAGjIaDMcM1rGR58PyMsZI11fDIkY3JYUOI
+          message: |
+            ${{ github.actor }} :
+            Commit message: Start deploy
+      
       - name: Run a multi-line script
         uses: actions/checkout@v2
       - run: |
@@ -20,7 +43,7 @@ jobs:
       - name: add folper and repo docker and install docker
         uses: appleboy/ssh-action@master
         with:
-          host: 51.250.18.108
+          host: 51.250.30.77
           username: admin
           key: ${{ secrets.KEY }}
           port: 22
@@ -34,7 +57,7 @@ jobs:
       - name: run docker and get docker-compose
         uses: appleboy/ssh-action@master
         with:
-          host: 51.250.18.108
+          host: 51.250.30.77
           username: admin
           key: ${{ secrets.KEY }}
           port: 22
@@ -48,7 +71,7 @@ jobs:
       - name: copy file via ssh password
         uses: appleboy/scp-action@master
         with:
-          host: 51.250.18.108
+          host: 51.250.30.77
           username: admin
           key: ${{ secrets.KEY }}
           port: 22
@@ -59,7 +82,7 @@ jobs:
       - name: unzip tar
         uses: appleboy/ssh-action@master
         with:
-          host: 51.250.18.108
+          host: 51.250.30.77
           username: admin
           key: ${{ secrets.KEY }}
           port: 22
@@ -73,7 +96,7 @@ jobs:
       - name: add host ip
         uses: appleboy/ssh-action@master
         with:
-          host: 51.250.18.108
+          host: 51.250.30.77
           username: admin
           key: ${{ secrets.KEY }}
           port: 22
@@ -86,4 +109,13 @@ jobs:
             sudo chmod 666 /var/run/docker.sock
             docker-compose build
             docker-compose up -d
+            
+      - name: Finish
+        uses: appleboy/telegram-action@master
+        with:
+          to: 273552356
+          token: 1716900369:AAGjIaDMcM1rGR58PyMsZI11fDIkY3JYUOI
+          message: |
+            ${{ github.actor }} :
+            Commit message: ${{ job.status }}
             
