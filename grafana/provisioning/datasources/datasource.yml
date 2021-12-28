@@ -7,7 +7,6 @@ datasources:
     type: prometheus
     access: proxy
     orgId: 1
-    url: http://51.250.18.162:9090
     password:
     user:
     database:
