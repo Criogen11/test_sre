@@ -51,7 +51,7 @@ jobs:
           port: 22
           script: |
             whoami
-            cd /var/test
+            cd /test_sre
             tar -xvf deploy.tar
             sed -i 's/orgId: 1/orgId: 1\n     url: http://'$ENV_IP':9090/g' /test_sre/deploy/grafana/provisioning/datasources/datasource.yml
             sed -i 's/# targets my_host/# targets my_host\n      -targets: ['$ENV_IP':9100]/g' /test_sre/deploy/prometheus/prometheus.yml
