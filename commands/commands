@@ -1,0 +1,8 @@
+#  grafana datasource.conf
+sed -i 's/orgId: 1/orgId: 1\n     url: http://'$ENV_IP':9090/g' /deploy/grafana/provisioning/datasources/datasource.yml
+
+# prometheus prometheus.yml
+sed -i 's/# targets my_host/# targets my_host\n      -targets: ['$ENV_IP':9100]/g' /deploy/prometheus/prometheus.yml
+sed -i 's/# targets nginx/# targets nginx\n      -targets: ['$ENV_IP':9113]/g' /deploy/prometheus/prometheus.yml
+
+
