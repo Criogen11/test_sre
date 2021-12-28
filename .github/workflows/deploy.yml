@@ -20,7 +20,7 @@ jobs:
       - name: add folper and repo docker and install docker
         uses: appleboy/ssh-action@master
         with:
-          host: 51.250.31.114
+          host: 51.250.26.113
           username: admin
           key: ${{ secrets.KEY }}
           port: 22
@@ -34,7 +34,7 @@ jobs:
       - name: run docker and get docker-compose
         uses: appleboy/ssh-action@master
         with:
-          host: 51.250.31.114
+          host: 51.250.26.113
           username: admin
           key: ${{ secrets.KEY }}
           port: 22
@@ -48,7 +48,7 @@ jobs:
       - name: copy file via ssh password
         uses: appleboy/scp-action@master
         with:
-          host: 51.250.31.114
+          host: 51.250.26.113
           username: admin
           key: ${{ secrets.KEY }}
           port: 22
@@ -59,7 +59,7 @@ jobs:
       - name: unzip tar
         uses: appleboy/ssh-action@master
         with:
-          host: 51.250.31.114
+          host: 51.250.26.113
           username: admin
           key: ${{ secrets.KEY }}
           port: 22
@@ -73,7 +73,7 @@ jobs:
       - name: add host ip
         uses: appleboy/ssh-action@master
         with:
-          host: 51.250.31.114
+          host: 51.250.26.113
           username: admin
           key: ${{ secrets.KEY }}
           port: 22
