@@ -9,9 +9,9 @@ scrape_configs:
   - job_name: 'my_host'
     scrape_interval: 5s
     static_configs:
-      - targets: ['51.250.18.162:9100']
+# targets my_host    
 
   - job_name: 'nginx'
     scrape_interval: 5s
     static_configs:
-      - targets: ['51.250.18.162:9113']
+# targets nginx   
