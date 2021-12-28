@@ -3,7 +3,7 @@ name: Deploy
 on:
   push:
     branches:
-      - master
+      - test
 
 jobs:
   deploy:
@@ -79,10 +79,11 @@ jobs:
           port: 22
           script: |
             whoami
-            sed -i 's/# import url/# import url\n    url: http://'$ENV_IP':9090/g' /var/test_sre/build/grafana/provisioning/datasources/datasource.yml
-            sed -i 's/# targets my_host/# targets my_host\n      -targets: ['$ENV_IP':9100]/g' /var/test_sre/build/prometheus/prometheus.yml
-            sed -i 's/# targets nginx/# targets nginx\n      -targets: ['$ENV_IP':9113]/g' /var/test_sre/build/prometheus/prometheus.yml
+            sed -i 's/# import url/# import url\n    url: '$ENV_IP':9090g' /var/test_sre/build/grafana/provisioning/datasources/datasource.yml
+            sed -i 's/# targets my_host/# targets my_host\n      - targets: ['$ENV_IP':9100]/g' /var/test_sre/build/prometheus/prometheus.yml
+            sed -i 's/# targets nginx/# targets nginx\n      - targets: ['$ENV_IP':9113]/g' /var/test_sre/build/prometheus/prometheus.yml
             cd /var/test_sre/build/
+            sudo chmod +x /usr/local/bin/docker-compose
             docker-compose build
             docker-compose up
             
