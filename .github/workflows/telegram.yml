@@ -19,7 +19,7 @@ jobs:
           token: 1716900369:AAGjIaDMcM1rGR58PyMsZI11fDIkY3JYUOI
           message: |
             ${{ github.actor }} :
-            Commit message: Start deploy  
+            Commit message: ${{ job.status }}  
             
             Repository: ${{ github.repository }}
             
