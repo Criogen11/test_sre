@@ -53,6 +53,17 @@ jobs:
             whoami
             cd /var/test_sre
             tar -xvf deploy.tar
+            
+      
+      - name: add host ip
+        uses: appleboy/ssh-action@master
+        with:
+          host: 51.250.31.114
+          username: admin
+          key: ${{ secrets.KEY }}
+          port: 22
+          script: |
+            whoami
             sed -i 's/orgId: 1/orgId: 1\n     url: http://'$ENV_IP':9090/g' /var/test_sre/deploy/grafana/provisioning/datasources/datasource.yml
             sed -i 's/# targets my_host/# targets my_host\n      -targets: ['$ENV_IP':9100]/g' /var/test_sre/deploy/prometheus/prometheus.yml
             sed -i 's/# targets nginx/# targets nginx\n      -targets: ['$ENV_IP':9113]/g' /var/test_sre/deploy/prometheus/prometheus.yml
