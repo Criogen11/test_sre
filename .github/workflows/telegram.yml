@@ -10,6 +10,7 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - name: send telegram message on push
         uses: appleboy/telegram-action@master
@@ -17,8 +18,8 @@ jobs:
           to: 273552356
           token: 1716900369:AAGjIaDMcM1rGR58PyMsZI11fDIkY3JYUOI
           message: |
-            ${{ github.actor }} created commit:
-            Commit message: ${{ github.event.commits[0].message }}
+            ${{ github.actor }} :
+            Commit message: Start deploy  
             
             Repository: ${{ github.repository }}
             
