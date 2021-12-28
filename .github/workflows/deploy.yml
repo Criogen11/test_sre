@@ -26,8 +26,8 @@ jobs:
           port: 22
           script: |
             whoami
-            sudo mkdir /test_sre
-            sudo chown -R admin:admin /test_sre
+            sudo mkdir /var/test_sre
+            sudo chown -R admin:admin /var/test_sre
 
       
       
@@ -39,7 +39,7 @@ jobs:
           key: ${{ secrets.KEY }}
           port: 22
           source: "deploy.tar"
-          target: "/test_sre"
+          target: "/var/test_sre"
 
 
       - name: unzip tar
@@ -51,8 +51,8 @@ jobs:
           port: 22
           script: |
             whoami
-            cd /test_sre
+            cd /var/test_sre
             tar -xvf deploy.tar
-            sed -i 's/orgId: 1/orgId: 1\n     url: http://'$ENV_IP':9090/g' /test_sre/deploy/grafana/provisioning/datasources/datasource.yml
-            sed -i 's/# targets my_host/# targets my_host\n      -targets: ['$ENV_IP':9100]/g' /test_sre/deploy/prometheus/prometheus.yml
-            sed -i 's/# targets nginx/# targets nginx\n      -targets: ['$ENV_IP':9113]/g' /test_sre/deploy/prometheus/prometheus.yml
+            sed -i 's/orgId: 1/orgId: 1\n     url: http://'$ENV_IP':9090/g' /var/test_sre/deploy/grafana/provisioning/datasources/datasource.yml
+            sed -i 's/# targets my_host/# targets my_host\n      -targets: ['$ENV_IP':9100]/g' /var/test_sre/deploy/prometheus/prometheus.yml
+            sed -i 's/# targets nginx/# targets nginx\n      -targets: ['$ENV_IP':9113]/g' /var/test_sre/deploy/prometheus/prometheus.yml
