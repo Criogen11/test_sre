@@ -15,7 +15,7 @@ jobs:
           token: 1716900369:AAGjIaDMcM1rGR58PyMsZI11fDIkY3JYUOI
           message: |
             ${{ github.actor }} :
-            Commit message: Start deploy, launch in 5 minutes  
+            Commit message: Start deploy
             
             Repository: ${{ github.repository }}
             
@@ -32,7 +32,7 @@ jobs:
       - name: add folper and repo docker and install docker
         uses: appleboy/ssh-action@master
         with:
-          host: 51.250.27.56
+          host: 51.250.23.59
           username: admin
           key: ${{ secrets.KEY1 }}
           port: 22
@@ -46,7 +46,7 @@ jobs:
       - name: run docker and get docker-compose
         uses: appleboy/ssh-action@master
         with:
-          host: 51.250.27.56
+          host: 51.250.23.59
           username: admin
           key: ${{ secrets.KEY1 }}
           port: 22
@@ -60,7 +60,7 @@ jobs:
       - name: copy file via ssh password
         uses: appleboy/scp-action@master
         with:
-          host: 51.250.27.56
+          host: 51.250.23.59
           username: admin
           key: ${{ secrets.KEY1 }}
           port: 22
@@ -71,7 +71,7 @@ jobs:
       - name: unzip tar
         uses: appleboy/ssh-action@master
         with:
-          host: 51.250.27.56
+          host: 51.250.23.59
           username: admin
           key: ${{ secrets.KEY1 }}
           port: 22
@@ -85,7 +85,7 @@ jobs:
       - name: add host ip
         uses: appleboy/ssh-action@master
         with:
-          host: 51.250.27.56
+          host: 51.250.23.59
           username: admin
           key: ${{ secrets.KEY1 }}
           port: 22
@@ -94,7 +94,7 @@ jobs:
             sed -i 's/# import url/# import url\n    url: '$ENV_IP':9090/g' /var/test_sre/build/grafana/provisioning/datasources/datasource.yml
             sed -i 's/# targets my_host/# targets my_host\n      - targets: ['$ENV_IP':9100]/g' /var/test_sre/build/prometheus/prometheus.yml
             sed -i 's/# targets nginx/# targets nginx\n      - targets: ['$ENV_IP':9113]/g' /var/test_sre/build/prometheus/prometheus.yml
-            sed -i 's/# get path/# get path\n                  - '$ENV_IP'\/nginx_status/g' /var/test_sre/build/docker-compose.yaml
+            sed -i 's/# get path/# get path\n                  - http:\/\/'$ENV_IP'\/nginx_status/g' /var/test_sre/build/docker-compose.yaml
             cd /var/test_sre/build/
             wget "https://storage.yandexcloud.net/cloud-certs/CA.pem" -O /var/test_sre/build/grafana/ssl/root.crt
             sudo chmod 0760 /var/test_sre/build/grafana/ssl/root.crt
