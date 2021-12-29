@@ -21,16 +21,6 @@ jobs:
             Repository: ${{ github.repository }}
             
             See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
-        timeout-minutes: 5
-      
-      - name: Start
-        uses: appleboy/telegram-action@master
-        with:
-          to: 273552356
-          token: 1716900369:AAGjIaDMcM1rGR58PyMsZI11fDIkY3JYUOI
-          message: |
-            ${{ github.actor }} :
-            Commit message: Start deploy
       
       - name: Run a multi-line script
         uses: actions/checkout@v2
@@ -52,7 +42,7 @@ jobs:
             sudo mkdir /var/test_sre
             sudo chown -R admin:admin /var/test_sre
             sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
-            sudo yum install -y docker-ce docker-ce-cli containerd.io
+            sudo yum install -y docker-ce docker-ce-cli containerd.io wget
 
       - name: run docker and get docker-compose
         uses: appleboy/ssh-action@master
@@ -106,6 +96,8 @@ jobs:
             sed -i 's/# targets my_host/# targets my_host\n      - targets: ['$ENV_IP':9100]/g' /var/test_sre/build/prometheus/prometheus.yml
             sed -i 's/# targets nginx/# targets nginx\n      - targets: ['$ENV_IP':9113]/g' /var/test_sre/build/prometheus/prometheus.yml
             cd /var/test_sre/build/
+            wget "https://storage.yandexcloud.net/cloud-certs/CA.pem" -O ./gragana/ssl/root.crt
+            sudo chmod 0760 ./gragana/ssl/root.crt
             sudo chmod 666 /var/run/docker.sock
             docker-compose build
             docker-compose up -d
