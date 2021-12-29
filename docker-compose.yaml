@@ -33,10 +33,17 @@ services:
                   - "3000:3000"
                 environment:
                   - GF_SECURITY_ADMIN_PASSWORD=Qwerty123
+                  - GF_DATABASE_TYPE=mysql
+                  - GF_DATABASE_HOST=rc1b-k55wvg1o0pxvmv0t.mdb.yandexcloud.net:3306
+                  - GF_DATABASE_NAME=test-sre
+                  - GF_DATABASE_USER=user
+                  - GF_DATABASE_PASSWORD=Qwerty123
+                  - GF_DATABASE_SSL_MODE=true
+                  - GF_DATABASE_CA_CERT_PATH=/etc/ssl/root.crt
+                  - GF_DATABASE_SERVER_CERT_NAME=rc1b-k55wvg1o0pxvmv0t.mdb.yandexcloud.net
                 volumes:
                   - ./grafana/provisioning:/etc/grafana/provisioning
-#                  - ./grafana/dashboards:/etc/grafana/dashboards
-#                  - ./grafana-data:/var/lib/grafana
+                  - ./grafana/ssl/:/etc/ssl/
         node-exporter:
                 image: prom/node-exporter
                 volumes:
