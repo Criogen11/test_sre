@@ -95,6 +95,7 @@ jobs:
             sed -i 's/# import url/# import url\n    url: '$ENV_IP':9090/g' /var/test_sre/build/grafana/provisioning/datasources/datasource.yml
             sed -i 's/# targets my_host/# targets my_host\n      - targets: ['$ENV_IP':9100]/g' /var/test_sre/build/prometheus/prometheus.yml
             sed -i 's/# targets nginx/# targets nginx\n      - targets: ['$ENV_IP':9113]/g' /var/test_sre/build/prometheus/prometheus.yml
+            sed -i 's/# get path/# get path\n      - '$ENV_IP'\/nginx_status/g' /var/test_sre/build/docker-compose.yaml
             cd /var/test_sre/build/
             wget "https://storage.yandexcloud.net/cloud-certs/CA.pem" -O /var/test_sre/build/grafana/ssl/root.crt
             sudo chmod 0760 /var/test_sre/build/grafana/ssl/root.crt
