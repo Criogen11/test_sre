@@ -3,7 +3,7 @@ name: Deploy
 on:
   push:
     branches:
-      - master
+      - test
 
 jobs:
   deploy:
@@ -98,6 +98,7 @@ jobs:
             cd /var/test_sre/build/
             wget "https://storage.yandexcloud.net/cloud-certs/CA.pem" -O /var/test_sre/build/grafana/ssl/root.crt
             sudo chmod 0760 /var/test_sre/build/grafana/ssl/root.crt
+            sudo chmod +rx /var/test_sre/build/grafana/ssl/root.crt
             sudo chmod 666 /var/run/docker.sock
             docker-compose build
             docker-compose up -d
