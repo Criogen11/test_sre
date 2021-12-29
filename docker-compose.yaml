@@ -23,7 +23,7 @@ services:
                 restart: always
                 command:
                   - -nginx.scrape-uri
-                  - http://51.250.18.162/nginx_status
+# get path
                 ports:
                   - "9113:9113"
 
